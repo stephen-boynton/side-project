@@ -10,3 +10,13 @@ services:
       - "5000:5000"
     environment:
       - FLASK_ENV=development
+
+  rp-next:
+    build:
+      context: ./rp-next
+      dockerfile: Dockerfile
+    volumes:
+      - ./rp-next:/client/src/app
+      - /client/src/app/node_modules
+    ports:
+      - "3000:3000"
