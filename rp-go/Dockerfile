@@ -1,35 +1,25 @@
-# rp-go/Dockerfile
+# Use the official Golang image.
+FROM golang:1.20 as builder
 
-# Start from the official Golang image to build the Go application.
-FROM golang:1.18 as builder
-
-# Set the Current Working Directory inside the container
+# Set the Current Working Directory inside the container.
 WORKDIR /app
 
-# Copy go mod and sum files
-COPY go.mod go.sum ./
+# Copy go mod and sum files.
+COPY go.mod ./
+COPY go.sum ./
 
-# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
+# Download all dependencies. Dependencies will be cached if go.mod and go.sum files are not changed.
 RUN go mod download
 
-# Copy the source code into the container
+# Copy the source code into the container.
 COPY . .
 
-# Build the Go app
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
-# RUN go get -u github.com/gin-gonic/gin
+# Install Air for hot reloading. Use go install to avoid deprecation issues with go get.
+RUN go install github.com/cosmtrek/air@latest
 
-# Start a new stage from scratch
-FROM alpine:latest  
-RUN apk --no-cache add ca-certificates
 
-WORKDIR /root/
-
-# Copy the Pre-built binary file from the previous stage
-COPY --from=builder /app/main .
-
-# Expose port 8080 to the outside world
+# Expose port 8080 to the outside world.
 EXPOSE 8080
 
-# Command to run the executable
-CMD ["gin", "--appPort", "5000", "--port", "3000"]
+# Command to run the application using Air for hot reloading.
+CMD ["air"]
