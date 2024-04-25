@@ -1,2 +1,2 @@
-say_hello:
-	 echo "Hello World"
+run_dev:
+	 docker-compose up --build
