@@ -26,4 +26,6 @@ services:
       context: ./rp-go
       dockerfile: Dockerfile
     volumes:
-      - ./rp-go/:/app/src
+      - ./rp-go/:/app
+    ports:
+      - "8080:8080"
