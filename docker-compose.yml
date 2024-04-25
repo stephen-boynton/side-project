@@ -20,3 +20,12 @@ services:
       - /client/src/app/node_modules
     ports:
       - "3000:3000"
+
+  rp-go:
+    build:
+      context: ./rp-go
+      dockerfile: Dockerfile
+    volumes:
+      - ./rp-go/:/app
+    ports:
+      - "8080:8080"
