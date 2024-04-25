@@ -16,8 +16,8 @@ services:
       context: ./rp-next
       dockerfile: Dockerfile
     volumes:
-      - ./rp-next:/client/src/app
-      - /client/src/app/node_modules
+      - ./rp-next:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
       - "3000:3000"
 
@@ -29,3 +29,14 @@ services:
       - ./rp-go/:/app
     ports:
       - "8080:8080"
+
+  rp-nest:
+    build:
+      context: ./rp-nest
+      dockerfile: Dockerfile
+    volumes:
+      - ./rp-nest:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3001:3001"
+
