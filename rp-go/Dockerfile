@@ -16,7 +16,7 @@ RUN go install github.com/cosmtrek/air@latest
 
 
 # Expose port 8080 to the outside world.
-EXPOSE 8080
+EXPOSE 8000
 
 # Command to run the application using Air for hot reloading.
 CMD ["air"]
