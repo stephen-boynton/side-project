@@ -10,10 +10,3 @@ docker-compose up
 ## Stack
 
 All built inside Docker containers for an easy expoerience.
-
-* Frontend - Nextjs
-* API Gateway - Go
-* Services
-    * NLP - Python
-    * User - TypeScript
-* Database - Postgres
