@@ -1,10 +1,13 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { NestFactory } from '@nestjs/core'
+import { AppModule } from './app.module'
+import { Logger } from '@nestjs/common'
 
 async function bootstrap() {
-  console.log('Starting NestJS kkkd...')
-  const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
-
+  Logger.log('Starting NestJS kkkd...')
+  const app = await NestFactory.create(AppModule)
+  await app.listen(3000)
 }
-bootstrap();
+
+bootstrap()
+
+const a = 'asdfadf'

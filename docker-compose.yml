@@ -1,5 +1,15 @@
 version: '3.8'
 services:
+  rp-next:
+    build:
+      context: ./rp-next
+      dockerfile: Dockerfile
+    volumes:
+      - ./rp-next:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3000:3000"
+
   rp-python:
     build:
       context: ./rp-python
@@ -10,16 +20,6 @@ services:
       - "5000:5000"
     environment:
       - FLASK_ENV=development
-
-  rp-next:
-    build:
-      context: ./rp-next
-      dockerfile: Dockerfile
-    volumes:
-      - ./rp-next:/usr/src/app
-      - /usr/src/app/node_modules
-    ports:
-      - "3000:3000"
 
   rp-go:
     build:
